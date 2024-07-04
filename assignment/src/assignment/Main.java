@@ -153,7 +153,7 @@ public class Main {
                         break;
                     }
                     System.out.print("Nhập mã số sinh viên cần xóa: ");
-                    String maSoXoa = scanner.nextLine().trim();
+                    String maSoXoa = scanner.nextLine().trim().toUpperCase();
                     if (qlsv.xoaSinhVien(maSoXoa)) {
                         System.out.println("Xóa sinh viên thành công!");
                     } else {
@@ -166,7 +166,7 @@ public class Main {
                         break; 
                     }
                     System.out.print("Nhập mã số sinh viên cần tìm: ");
-                    String maSoTimKiem = scanner.nextLine().trim();
+                    String maSoTimKiem = scanner.nextLine().trim().toUpperCase();
                     SinhVien svTimKiem = qlsv.timKiem(maSoTimKiem);
                     if (svTimKiem != null) {
                         System.out.println("Thông tin sinh viên tìm thấy: " + svTimKiem);
