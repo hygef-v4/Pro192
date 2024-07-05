@@ -169,7 +169,7 @@ public class Main {
                     String maSoTimKiem = scanner.nextLine().trim().toUpperCase();
                     SinhVien svTimKiem = qlsv.timKiem(maSoTimKiem);
                     if (svTimKiem != null) {
-                        System.out.println("Thông tin sinh viên tìm thấy: " + svTimKiem);
+                        System.out.println("Thông tin sinh viên tìm thấy: \n" + svTimKiem);
                     } else {
                         System.out.println("Không tìm thấy sinh viên với mã số: " + maSoTimKiem);
                     }
