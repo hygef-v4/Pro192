@@ -9,6 +9,6 @@ public class SinhVienKinhTe extends SinhVien {
 
     @Override
     public String toString() {
-        return super.toString() + String.format(", Các môn học: %s", String.join(", ", MON_HOC));
+        return super.toString() + String.format(",\nCác môn học:\n%s", String.join("\n", MON_HOC));
     }
 }
