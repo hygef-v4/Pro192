@@ -64,8 +64,10 @@ public class Main {
                             System.out.println("Mã số sinh viên không được để trống. Vui lòng nhập lại.");
                         } else if (!maSo.matches("^(?i)he\\d{6}$")) {
                             System.out.println("Mã số sinh viên không hợp lệ. Vui lòng nhập lại.");
+                        } else if (qlsv.timKiem(maSo.toUpperCase()) != null) {
+                            System.out.println("Mã số sinh viên đã tồn tại. Vui lòng nhập lại.");
                         }
-                    } while (maSo.isEmpty() || !maSo.matches("^(?i)he\\d{6}$"));
+                    } while (maSo.isEmpty() || !maSo.matches("^(?i)he\\d{6}$") || qlsv.timKiem(maSo.toUpperCase()) != null);
 
                     int chuyenNganh;
                     do {
@@ -102,12 +104,12 @@ public class Main {
                         sinhVien = new SinhVienKinhTe(hoTen, maSo, "Kinh tế", diemMon);
                     }
                     qlsv.themSinhVien(sinhVien);
-                    
+
                     break;
                 case 2:
                     if (qlsv.soLuongSinhVien() == 0) {
                         System.out.println("Danh sách sinh viên đang trống không thể cập nhật !");
-                        break; 
+                        break;
                     }
                     System.out.print("Nhập mã số sinh viên cần cập nhật: ");
                     String maSoCapNhat = scanner.nextLine().trim().toUpperCase();
@@ -163,7 +165,7 @@ public class Main {
                 case 4:
                     if (qlsv.soLuongSinhVien() == 0) {
                         System.out.println("Danh sách sinh viên đang trống không tìm kiếm !");
-                        break; 
+                        break;
                     }
                     System.out.print("Nhập mã số sinh viên cần tìm: ");
                     String maSoTimKiem = scanner.nextLine().trim().toUpperCase();
@@ -205,7 +207,7 @@ public class Main {
                 case 10:
                     if (qlsv.soLuongSinhVien() == 0) {
                         System.out.println("Danh sách sinh viên đang trống không thể sắp xếp!");
-                        break; 
+                        break;
                     }
                     qlsv.sapXepTheoGPA();
                     System.out.println("Danh sách sinh viên đã được sắp xếp theo GPA giảm dần.");
@@ -213,7 +215,7 @@ public class Main {
                 case 11:
                     if (qlsv.soLuongSinhVien() == 0) {
                         System.out.println("Danh sách sinh viên đang trống không thể sắp xếp!");
-                        break; 
+                        break;
                     }
                     qlsv.sapXepTheoTen();
                     System.out.println("Danh sách sinh viên đã được sắp xếp theo tên tăng dần.");
