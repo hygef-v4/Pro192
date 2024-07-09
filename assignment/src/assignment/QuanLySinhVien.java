@@ -227,20 +227,20 @@ public class QuanLySinhVien implements ISinhVien {
 
         if (cocVangKyThuat != null) {
             System.out.println("Cóc Vàng ngành Kỹ thuật:");
-            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
-                    "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email");
-            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
-                    cocVangKyThuat.getHoTen(), cocVangKyThuat.getMaSo(), cocVangKyThuat.getGpa(), cocVangKyThuat.getChuyenNganh(), cocVangKyThuat.getEmail());
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s %-15s%n",
+                    "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email", "Giải thưởng");
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s %-15s%n",
+                    cocVangKyThuat.getHoTen(), cocVangKyThuat.getMaSo(), cocVangKyThuat.getGpa(), cocVangKyThuat.getChuyenNganh(), cocVangKyThuat.getEmail(), "10 triệu VNĐ");
         } else {
             System.out.println("Không có sinh viên ngành Kỹ thuật");
         }
 
         if (cocVangKinhTe != null) {
             System.out.println("Cóc Vàng ngành Kinh tế:");
-            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
-                    "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email");
-            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
-                    cocVangKinhTe.getHoTen(), cocVangKinhTe.getMaSo(), cocVangKinhTe.getGpa(), cocVangKinhTe.getChuyenNganh(), cocVangKinhTe.getEmail());
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s %-15s%n",
+                    "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email", "Giải thưởng");
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s %-15s%n",
+                    cocVangKinhTe.getHoTen(), cocVangKinhTe.getMaSo(), cocVangKinhTe.getGpa(), cocVangKinhTe.getChuyenNganh(), cocVangKinhTe.getEmail(), "10 triệu VNĐ");
         } else {
             System.out.println("Không có sinh viên ngành Kinh tế");
         }
