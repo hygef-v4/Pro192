@@ -25,6 +25,8 @@ public class Main {
             System.out.println("10. Sắp xếp sinh viên theo GPA");
             System.out.println("11. Sắp xếp sinh viên theo tên");
             System.out.println("12. Số lượng sinh viên");
+            System.out.println("13. Danh sách sinh viên được trao học bổng");
+            System.out.println("14. Danh sách sinh viên đóng tiền phạt (gpa < 5)");
             System.out.println("0. Thoát");
             System.out.print("Vui lòng chọn chức năng: ");
 
@@ -38,7 +40,7 @@ public class Main {
             scanner.nextLine(); // xóa buffer 
 
             // lọc bỏ trường hợp ngoài phạm vi lựa chọn 
-            if (luaChon < 0 || luaChon > 12) {
+            if (luaChon < 0 || luaChon > 14) {
                 System.out.println("Lựa chọn không hợp lệ! Vui lòng chọn lại.");
                 continue;
             }
@@ -120,7 +122,7 @@ public class Main {
                             hoTen = scanner.nextLine().trim();
                             if (hoTen.isEmpty()) {
                                 System.out.println("Họ và tên không được để trống. Vui lòng nhập lại.");
-                            } else if (!hoTen.matches("^[a-zA-Z\\s]+$")) {
+                            } else if (!hoTen.matches("^[a-zA-Z\\s]+$")) {  // chỉ chấp nhận a- z A - Z 
                                 System.out.println("Họ và tên không được chứa số hoặc ký tự đặc biệt. Vui lòng nhập lại.");
                             }
                         } while (hoTen.isEmpty() || !hoTen.matches("^[a-zA-Z\\s]+$"));
@@ -224,6 +226,13 @@ public class Main {
                     int soluong = qlsv.soLuongSinhVien();
                     System.out.println("Tổng số sinh viên: " + soluong);
                     break;
+                case 13:
+                    qlsv.hienThiHocBongSinhVien();
+                    break;
+                case 14:
+                    qlsv.hienThiPhatSinhVien();
+                    break;
+
                 case 0:
                     System.out.println("Chương trình kết thúc.");
                     break;

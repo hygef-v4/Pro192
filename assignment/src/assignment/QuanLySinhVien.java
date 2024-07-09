@@ -40,6 +40,7 @@ public class QuanLySinhVien implements ISinhVien {
     @Override
     public boolean xoaSinhVien(String maSo) {
         return danhSach.removeIf(sv -> sv.getMaSo().equals(maSo));
+        // lamda expression 
     }
 
     // Tìm kiếm sinh viên
@@ -47,7 +48,7 @@ public class QuanLySinhVien implements ISinhVien {
     public SinhVien timKiem(String maSo) {
         return danhSach.stream()
                 .filter(sv -> sv.getMaSo().equals(maSo))
-                .findFirst()
+                .findFirst() // tìm thấy object đầu tiền và return nó 
                 .orElse(null);
         // return sinh viên cần tiềm kiếm 
     }
@@ -101,11 +102,13 @@ public class QuanLySinhVien implements ISinhVien {
     }
 
     @Override
+    // 10 9 8 6
     public void sapXepTheoGPA() {
 
         List<SinhVien> danhSachCopy = new ArrayList<>(danhSach);
         // sắp xếp giảm dần 
-        danhSachCopy.sort(Comparator.comparingDouble(SinhVien::getGpa).reversed());
+        danhSachCopy.sort((sv1, sv2) -> Double.compare(sv2.getGpa(), sv1.getGpa()));
+        //danhSachCopy.sort(Comparator.comparingDouble(SinhVien::getGpa).reversed());
         System.out.println("Danh sách sinh viên sắp xếp theo gpa:");
         System.out.printf("%-5s %-20s %-10s %-10s %-20s %-30s%n",
                 "STT", "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email");
@@ -119,9 +122,10 @@ public class QuanLySinhVien implements ISinhVien {
 
     @Override
     public void sapXepTheoTen() {
-        // sắp xếp theo tên chính 
+        // sắp xếp theo tên chính // {"khuat",  "quang", "hung"}       len = 3 
 
         List<SinhVien> danhSachCopy = new ArrayList<>(danhSach);
+        // a[i]       // array               2 =   //index    array.length() - 1 
         danhSachCopy.sort(Comparator.comparing(sv -> sv.getHoTen().split(" ")[sv.getHoTen().split(" ").length - 1]));
         System.out.println("Danh sách sinh viên sắp xếp theo tên:");
         System.out.printf("%-5s %-20s %-10s %-10s %-20s %-30s%n",
@@ -156,6 +160,55 @@ public class QuanLySinhVien implements ISinhVien {
     public int soLuongSinhVien() {
         return this.danhSach.size();
     }
+
+    public void hienThiHocBongSinhVien() {
+        List<SinhVien> svHocBong = new ArrayList<>();
+        for (SinhVien sv : danhSach) {
+            if (sv.getGpa() >= 8) {
+                svHocBong.add(sv);
+            }
+        }
+
+        if (svHocBong.isEmpty()) {
+            System.out.println("Không có sinh viên để trao học bổng");
+        } else {
+            svHocBong.sort(Comparator.comparingDouble(SinhVien::getGpa).reversed());
+            System.out.println("Danh sách sinh viên nhận học bổng:");
+            System.out.printf("%-5s %-20s %-10s %-10s %-20s %-30s %-10s %-15s%n",
+                    "STT", "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email", "Xếp loại", "Học bổng");
+            int stt = 1;
+            for (SinhVien sv : svHocBong) {
+                String hocBong = sv.getGpa() >= 9 ? "1 triệu VNĐ" : "500k VNĐ";
+                String xepLoai = sv.getGpa() >= 9 ? "Xuất sắc" : "Giỏi";
+                System.out.printf("%-5d %-20s %-10s %-10s %-20s %-30s %-10s %-15s%n",
+                        stt++, sv.getHoTen(), sv.getMaSo(), sv.getGpa(), sv.getChuyenNganh(), sv.getEmail(), xepLoai, hocBong);
+            }
+        }
+    }
+    
+    public void hienThiPhatSinhVien() {
+    List<SinhVien> svPhat = new ArrayList<>();
+
+    for (SinhVien sv : danhSach) {
+        if (sv.getGpa() < 5) {
+            svPhat.add(sv);
+        }
+    }
+
+    if (svPhat.isEmpty()) {
+        System.out.println("Không có sinh viên bị phạt");
+    } else {
+        System.out.println("Danh sách sinh viên bị phạt:");
+        System.out.printf("%-5s %-20s %-10s %-10s %-20s %-30s %-15s%n",
+                "STT", "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email", "Phạt");
+        int stt = 1;
+        for (SinhVien sv : svPhat) {
+            System.out.printf("%-5d %-20s %-10s %-10s %-20s %-30s %-15s%n",
+                    stt++, sv.getHoTen(), sv.getMaSo(), sv.getGpa(), sv.getChuyenNganh(), sv.getEmail(), "300k VNĐ");
+        }
+    }
+}
+
 
     // Lưu danh sách sinh viên vào file
     @Override

@@ -17,7 +17,7 @@ public abstract class SinhVien implements Serializable {
     final private String emailDomain = "@fpt.edu.vn";
 
     public SinhVien(String hoTen, String maSo, String chuyenNganh, double[] diemMon) {
-        // in hoa họ và tên sinh viên 
+        // in hoa họ và tên sinh viên  
         String[] phanTen = hoTen.split("\\s+");
         for (int i = 0; i < phanTen.length; i++) {
             phanTen[i] = Character.toUpperCase(phanTen[i].charAt(0)) + phanTen[i].substring(1).toLowerCase();
@@ -43,17 +43,17 @@ public abstract class SinhVien implements Serializable {
     public double getDiemTongKet() {
         return (diemMon1 + diemMon2 + diemMon3 + diemMon4 + diemMon5) / 5;
     }
-
-    public String taoEmail() {
-        String[] parts = hoTen.split(" ");
-        String ho = parts[0];
-        String ten = parts[parts.length - 1];
-        StringBuilder dem = new StringBuilder();
-        for (int i = 1; i < parts.length - 1; i++) {
-            dem.append(parts[i].charAt(0));
+                                   //  0     1     2   3 
+    public String taoEmail() {     // phung nguyen ha vu 
+        String[] parts = hoTen.split(" "); 
+        String ho = parts[0];  // phung  
+        String ten = parts[parts.length - 1];  // vu 
+        StringBuilder dem = new StringBuilder();   
+        for (int i = 1; i < parts.length - 1; i++) {    
+            dem.append(parts[i].charAt(0));     // nh
         }
         return (ten + ho.charAt(0) + dem.toString() + maSo + emailDomain).toLowerCase();
-    }
+    }        // vupnhhe190895@fpt.edu.vn
 
     public String getHoTen() {
         return hoTen;
@@ -80,8 +80,8 @@ public abstract class SinhVien implements Serializable {
     }
 
     public double getGpa() {
-        return Math.round(gpa * 10.0) / 10.0;
-    }
+        return Math.round(gpa * 10.0) / 10.0;  // làm tròn chứ số thập phân thứ 1
+    }  
 
     public void setGpa(double gpa) {
         this.gpa = gpa;

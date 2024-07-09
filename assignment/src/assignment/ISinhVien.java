@@ -1,7 +1,5 @@
 package assignment;
 
-import java.util.List;
-
 public interface ISinhVien {
 
     // Thêm sinh viên
