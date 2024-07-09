@@ -185,30 +185,66 @@ public class QuanLySinhVien implements ISinhVien {
             }
         }
     }
-    
+
     public void hienThiPhatSinhVien() {
-    List<SinhVien> svPhat = new ArrayList<>();
+        List<SinhVien> svPhat = new ArrayList<>();
 
-    for (SinhVien sv : danhSach) {
-        if (sv.getGpa() < 5) {
-            svPhat.add(sv);
+        for (SinhVien sv : danhSach) {
+            if (sv.getGpa() < 5) {
+                svPhat.add(sv);
+            }
+        }
+
+        if (svPhat.isEmpty()) {
+            System.out.println("Không có sinh viên bị phạt");
+        } else {
+            System.out.println("Danh sách sinh viên bị phạt:");
+            System.out.printf("%-5s %-20s %-10s %-10s %-20s %-30s %-15s%n",
+                    "STT", "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email", "Phạt");
+            int stt = 1;
+            for (SinhVien sv : svPhat) {
+                System.out.printf("%-5d %-20s %-10s %-10s %-20s %-30s %-15s%n",
+                        stt++, sv.getHoTen(), sv.getMaSo(), sv.getGpa(), sv.getChuyenNganh(), sv.getEmail(), "300k VNĐ");
+            }
         }
     }
 
-    if (svPhat.isEmpty()) {
-        System.out.println("Không có sinh viên bị phạt");
-    } else {
-        System.out.println("Danh sách sinh viên bị phạt:");
-        System.out.printf("%-5s %-20s %-10s %-10s %-20s %-30s %-15s%n",
-                "STT", "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email", "Phạt");
-        int stt = 1;
-        for (SinhVien sv : svPhat) {
-            System.out.printf("%-5d %-20s %-10s %-10s %-20s %-30s %-15s%n",
-                    stt++, sv.getHoTen(), sv.getMaSo(), sv.getGpa(), sv.getChuyenNganh(), sv.getEmail(), "300k VNĐ");
+    public void hienThiCocVang() {
+        SinhVien cocVangKyThuat = null;
+        SinhVien cocVangKinhTe = null;
+
+        for (SinhVien sv : danhSach) {
+            if (sv.getChuyenNganh().equalsIgnoreCase("Kỹ thuật")) {
+                if (cocVangKyThuat == null || sv.getGpa() > cocVangKyThuat.getGpa()) {
+                    cocVangKyThuat = sv;
+                }
+            } else if (sv.getChuyenNganh().equalsIgnoreCase("Kinh tế")) {
+                if (cocVangKinhTe == null || sv.getGpa() > cocVangKinhTe.getGpa()) {
+                    cocVangKinhTe = sv;
+                }
+            }
+        }
+
+        if (cocVangKyThuat != null) {
+            System.out.println("Cóc Vàng ngành Kỹ thuật:");
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
+                    "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email");
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
+                    cocVangKyThuat.getHoTen(), cocVangKyThuat.getMaSo(), cocVangKyThuat.getGpa(), cocVangKyThuat.getChuyenNganh(), cocVangKyThuat.getEmail());
+        } else {
+            System.out.println("Không có sinh viên ngành Kỹ thuật");
+        }
+
+        if (cocVangKinhTe != null) {
+            System.out.println("Cóc Vàng ngành Kinh tế:");
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
+                    "Họ và Tên", "MSSV", "Điểm", "Chuyên ngành", "Email");
+            System.out.printf("%-20s %-10s %-10s %-20s %-30s%n",
+                    cocVangKinhTe.getHoTen(), cocVangKinhTe.getMaSo(), cocVangKinhTe.getGpa(), cocVangKinhTe.getChuyenNganh(), cocVangKinhTe.getEmail());
+        } else {
+            System.out.println("Không có sinh viên ngành Kinh tế");
         }
     }
-}
-
 
     // Lưu danh sách sinh viên vào file
     @Override

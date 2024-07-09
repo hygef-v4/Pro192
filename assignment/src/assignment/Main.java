@@ -27,6 +27,7 @@ public class Main {
             System.out.println("12. Số lượng sinh viên");
             System.out.println("13. Danh sách sinh viên được trao học bổng");
             System.out.println("14. Danh sách sinh viên đóng tiền phạt (gpa < 5)");
+            System.out.println("15. Danh sách cóc vàng của kỳ học");
             System.out.println("0. Thoát");
             System.out.print("Vui lòng chọn chức năng: ");
 
@@ -40,7 +41,7 @@ public class Main {
             scanner.nextLine(); // xóa buffer 
 
             // lọc bỏ trường hợp ngoài phạm vi lựa chọn 
-            if (luaChon < 0 || luaChon > 14) {
+            if (luaChon < 0 || luaChon > 15) {
                 System.out.println("Lựa chọn không hợp lệ! Vui lòng chọn lại.");
                 continue;
             }
@@ -231,6 +232,9 @@ public class Main {
                     break;
                 case 14:
                     qlsv.hienThiPhatSinhVien();
+                    break;
+                case 15:
+                    qlsv.hienThiCocVang();
                     break;
 
                 case 0:
